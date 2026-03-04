@@ -1,10 +1,26 @@
 # Red Fury
 
-Ecommerce frontend en React + Vite para vender productos de Carolina Reaper, con:
+Red Fury es una tienda web enfocada en productos de picante extremo (Carolina Reaper).  
+El proyecto implementa un flujo completo de compra: exploracion de productos, detalle por item, carrito con cantidades, y pago con Stripe Checkout.
+
+Esta aplicacion esta construida como frontend SPA con React + Vite, e incluye un endpoint para crear sesiones de pago con Stripe (modo serverless y modo desarrollo local).
+
+## Caracteristicas
 
 - Catalogo y detalle de productos
 - Carrito con cantidades y total
 - Checkout con Stripe
+- Navegacion por secciones (Inicio, Recetas, Productos)
+- UI responsive para desktop y mobile
+
+## Stack
+
+- React 19
+- React Router
+- Tailwind CSS
+- Framer Motion
+- Stripe Checkout
+- Vite
 
 ## Requisitos
 
