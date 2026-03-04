@@ -31,7 +31,10 @@ function ProductPage() {
   };
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden text-white bg-gradient-to-br from-black via-red-950 to-orange-950 flex items-center pt-28 pb-16 px-4 sm:px-6">
+    <section
+      id="productos"
+      className="relative min-h-screen w-full overflow-hidden text-white bg-gradient-to-br from-black via-red-950 to-orange-950 flex items-center pt-28 pb-16 px-4 sm:px-6"
+    >
       {/* 🔥 Glow de fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,0,0.18),transparent_60%)]" />
 
@@ -79,21 +82,27 @@ function ProductPage() {
 
             {/* 🔢 Cantidad */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <div className="flex items-center rounded-xl border border-white/20 overflow-hidden">
+              <div
+                className="flex items-center justify-between 
+                  w-full sm:w-auto
+                  max-w-[200px]
+                  rounded-xl border border-white/20 
+                  bg-white/5 backdrop-blur-md"
+              >
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-12 h-12 bg-white/10 hover:bg-white/20 transition text-xl font-bold"
+                  className="w-12 h-12 flex items-center justify-center
+                 text-xl rounded-2xl font-bold hover:bg-white/10 transition"
                 >
                   −
                 </button>
 
-                <span className="w-14 text-center font-semibold text-lg">
-                  {quantity}
-                </span>
+                <span className="text-lg font-semibold">{quantity}</span>
 
                 <button
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="w-12 h-12 bg-white/10 hover:bg-white/20 transition text-xl font-bold"
+                  className="w-12 h-12 flex items-center justify-center
+                 text-xl rounded-2xl font-bold hover:bg-white/10 transition"
                 >
                   +
                 </button>
@@ -101,15 +110,15 @@ function ProductPage() {
 
               <button
                 onClick={handleAddToCart}
-                className="flex-1 bg-red-600 hover:bg-red-500 transition px-8 py-4 rounded-xl font-semibold text-lg shadow-lg shadow-red-900/40"
+                className="flex-1 bg-red-600 hover:bg-red-500 transition 
+               px-8 py-4 rounded-2xl font-semibold text-lg 
+               shadow-lg shadow-red-900/40"
               >
                 Añadir al carrito
               </button>
             </div>
 
-            <p className="text-gray-500 text-sm">
-              Pago seguro con Stripe. Envío a toda España.
-            </p>
+            <p className="text-gray-500 text-sm">Pago seguro con Stripe.</p>
           </div>
         </motion.div>
       </div>

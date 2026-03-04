@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
 import { createCheckoutSession } from "../lib/stripeCheckout";
 import { motion } from "framer-motion";
+import PageBackground from "../Components/PageBackground";
 
 function CheckoutPage({ success, cancelled }) {
   const { cart, cartTotal, clearCart } = useContext(CartContext);
@@ -15,6 +16,13 @@ function CheckoutPage({ success, cancelled }) {
   useEffect(() => {
     if (isSuccess) clearCart();
   }, [isSuccess, clearCart]);
+
+  useEffect(() => {
+    if (!isSuccess && !isCancel && cart.length === 0) {
+      navigate("/carrito", { replace: true });
+    }
+  }, [cart.length, isCancel, isSuccess, navigate]);
+
   const handlePayWithStripe = async () => {
     if (cart.length === 0) {
       navigate("/carrito");
@@ -31,9 +39,10 @@ function CheckoutPage({ success, cancelled }) {
       setLoading(false);
     }
   };
+
   if (isSuccess) {
     return (
-      <div className="min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
+      <PageBackground className="pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -56,12 +65,12 @@ function CheckoutPage({ success, cancelled }) {
             Volver al inicio{" "}
           </Link>
         </motion.div>{" "}
-      </div>
+      </PageBackground>
     );
   }
   if (isCancel) {
     return (
-      <div className="min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
+      <PageBackground className="pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
         {" "}
         <motion.div
           initial={{ opacity: 0 }}
@@ -85,7 +94,7 @@ function CheckoutPage({ success, cancelled }) {
               Ver carrito{" "}
             </Link>{" "}
             <Link
-              to="/"
+              to="/#productos"
               className="w-full sm:w-auto text-center bg-orange-600 hover:bg-orange-500 px-6 py-3 rounded-xl font-semibold transition text-sm sm:text-base"
             >
               {" "}
@@ -93,15 +102,16 @@ function CheckoutPage({ success, cancelled }) {
             </Link>{" "}
           </div>
         </motion.div>{" "}
-      </div>
+      </PageBackground>
     );
   }
+
   if (cart.length === 0) {
-    navigate("/carrito", { replace: true });
     return null;
   }
+
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
+    <PageBackground className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2">
           Checkout
@@ -120,6 +130,7 @@ function CheckoutPage({ success, cancelled }) {
                   {item.name} × {item.quantity || 1}
                 </span>
                 <span className="shrink-0">
+                  $
                   {((Number(item.price) || 0) * (item.quantity || 1)).toFixed(
                     2,
                   )}
@@ -165,7 +176,7 @@ function CheckoutPage({ success, cancelled }) {
           ← Volver al carrito
         </Link>
       </div>
-    </div>
+    </PageBackground>
   );
 }
 export default CheckoutPage;

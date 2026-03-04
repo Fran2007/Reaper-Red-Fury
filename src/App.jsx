@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { CartProvider } from "./Context/CartContext";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import ProductPage from "./Components/ProductPage";
 import ProductsSection from "./Components/ProductSection";
 import HeroSection from "./Components/HeroSection";
@@ -26,6 +27,7 @@ function App() {
 
         <Route path="/producto/:id" element={<ProductPage />} />
         <Route path="/carrito" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </CartProvider>
   );

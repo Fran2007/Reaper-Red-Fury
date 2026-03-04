@@ -4,21 +4,21 @@ export const products = [
     name: "Carolina Reaper 50g",
     description: "Chile Carolina Reaper en polvo.",
     price: 12.99,
-    image: "../public/images/CarolinaReaper.png",
+    image: "/images/CarolinaReaper.png",
   },
   {
     id: 2,
     name: "Carolina Reaper 100g",
     description: "Chile Carolina Reaper en polvo.",
     price: 19.99,
-    image: "../public/images/Carolina100g.png",
+    image: "/images/Carolina100g.png",
   },
   {
     id: 3,
     name: "Carolina Reaper + Habanero Premium",
     description: "Mezcla de chile Carolina Reaper y Habanero.",
     price: 24.99,
-    image: "../public/images/CarolinaPremiunm.png",
+    image: "/images/CarolinaPremiunm.png",
   },
 ];
 

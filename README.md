@@ -1,16 +1,40 @@
-# React + Vite
+# Red Fury
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ecommerce frontend en React + Vite para vender productos de Carolina Reaper, con:
 
-Currently, two official plugins are available:
+- Catalogo y detalle de productos
+- Carrito con cantidades y total
+- Checkout con Stripe
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requisitos
 
-## React Compiler
+- Node.js 18+
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Variables de entorno
 
-## Expanding the ESLint configuration
+Crea un archivo `.env` en la raiz:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+VITE_STRIPE_CHECKOUT_API_URL=/api/create-checkout-session
+STRIPE_SECRET_KEY=sk_test_xxx
+```
+
+Notas:
+
+- `VITE_STRIPE_PUBLISHABLE_KEY` se usa en el frontend.
+- `STRIPE_SECRET_KEY` solo debe existir en backend/serverless.
+- El endpoint serverless incluido esta en `api/create-checkout-session.js` (estilo Vercel).
+
+## Ejecutar
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```

@@ -1,43 +1,71 @@
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCallback, useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const { cartCount } = useContext(CartContext);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSectionWhenReady = useCallback((sectionId, attempts = 0) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (attempts < 20) {
+      requestAnimationFrame(() =>
+        scrollToSectionWhenReady(sectionId, attempts + 1),
+      );
+    }
+  }, []);
+
+  const goToSection = (sectionId) => {
+    setOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      requestAnimationFrame(() => scrollToSectionWhenReady(sectionId));
+      return;
+    }
+
+    scrollToSectionWhenReady(sectionId);
+  };
 
   const links = (
     <>
-      <a
-        href="/#hero"
-        onClick={() => setOpen(false)}
+      <button
+        type="button"
+        onClick={() => goToSection("hero")}
         className="hover:text-orange-400 transition"
       >
         Inicio
-      </a>
-      <a
-        href="/#recetas"
-        onClick={() => setOpen(false)}
+      </button>
+      <button
+        type="button"
+        onClick={() => goToSection("recetas")}
         className="hover:text-orange-400 transition"
       >
         Recetas
-      </a>
-      <a
-        href="/#productos"
-        onClick={() => setOpen(false)}
+      </button>
+      <button
+        type="button"
+        onClick={() => goToSection("productos")}
         className="hover:text-orange-400 transition"
       >
         Productos
-      </a>
+      </button>
       <Link
         to="/carrito"
         onClick={() => setOpen(false)}
-        className="relative hover:text-orange-400 transition flex items-center gap-2"
+        className="hover:text-orange-400 transition flex items-center gap-2"
       >
         Carrito
         {cartCount > 0 && (
-          <span className="absolute -top-2 -right-2 min-w-[1.25rem] h-5 px-1 flex items-center justify-center text-xs font-bold bg-orange-500 text-black rounded-full">
+          <span className="min-w-[1.35rem] h-5 px-1 flex items-center justify-center text-xs font-bold bg-orange-500 text-black rounded-full">
             {cartCount > 99 ? "99+" : cartCount}
           </span>
         )}
@@ -99,7 +127,7 @@ function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden overflow-hidden border-t border-white/10"
           >
-            <div className="flex flex-col gap-1 px-4 py-4 text-gray-200 bg-black/30 [&>a]:block [&>a]:py-3 [&>a]:text-base [&>a]:border-b [&>a]:border-white/10 [&>a:last-child]:border-0">
+            <div className="flex flex-col gap-1 px-4 py-4 text-gray-200 bg-black/30 [&>*]:block [&>*]:py-3 [&>*]:text-base [&>*]:border-b [&>*]:border-white/10 [&>*:last-child]:border-0">
               {links}
             </div>
           </motion.div>

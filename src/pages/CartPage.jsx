@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartContext } from "../Context/CartContext"; // adjust path if needed
+import PageBackground from "../Components/PageBackground";
 
 function CartPage() {
   const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } =
@@ -15,7 +16,7 @@ function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
+      <PageBackground className="pt-24 sm:pt-28 pb-16 px-4 sm:px-6 flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,12 +35,12 @@ function CartPage() {
             Ver productos
           </Link>
         </motion.div>
-      </div>
+      </PageBackground>
     );
   }
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
+    <PageBackground className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2">Carrito</h1>
         <p className="text-gray-400 mb-6 sm:mb-10 text-sm sm:text-base">
@@ -59,7 +60,7 @@ function CartPage() {
               >
                 <div className="flex gap-3 sm:gap-4 flex-1 min-w-0">
                   <img
-                    src={item.img}
+                    src={item.image}
                     alt={item.name}
                     className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg shrink-0"
                   />
@@ -149,7 +150,7 @@ function CartPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageBackground>
   );
 }
 
