@@ -27,8 +27,7 @@ function Navbar() {
     setOpen(false);
 
     if (location.pathname !== "/") {
-      navigate("/");
-      requestAnimationFrame(() => scrollToSectionWhenReady(sectionId));
+      navigate(`/#${sectionId}`);
       return;
     }
 

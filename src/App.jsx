@@ -7,11 +7,13 @@ import ProductsSection from "./Components/ProductSection";
 import HeroSection from "./Components/HeroSection";
 import Navbar from "./Components/Navbar";
 import RecipesSection from "./Components/RecipiesSection";
+import ScrollToHash from "./Components/ScrollToHash";
 
 function App() {
   return (
     <CartProvider>
       <Navbar />
+      <ScrollToHash />
 
       <Routes>
         <Route
