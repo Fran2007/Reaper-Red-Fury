@@ -90,11 +90,12 @@ function RecipesSection() {
               className="group bg-black/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col"
             >
               <a href={recipe.link} target="_blank" rel="noopener noreferrer">
-                <div className="overflow-hidden h-56 md:h-64">
+                <div className="overflow-hidden aspect-[4/3] bg-black/30">
                   <img
                     src={recipe.img}
                     alt={recipe.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
                   />
                 </div>
               </a>

@@ -24,11 +24,14 @@ function ProductsSection() {
               onClick={() => navigate(`/producto/${product.id}`)}
               className="cursor-pointer bg-black/40 backdrop-blur-xl border border-white/10 p-4 sm:p-6 rounded-2xl hover:scale-[1.03] active:scale-[0.98] transition shadow-xl"
             >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover mb-4 rounded-xl"
-              />
+              <div className="w-full aspect-[4/3] mb-4 rounded-xl overflow-hidden bg-black/30 border border-white/10">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-contain p-3"
+                  loading="lazy"
+                />
+              </div>
 
               <h3 className="text-lg sm:text-xl font-semibold line-clamp-2">
                 {product.name}

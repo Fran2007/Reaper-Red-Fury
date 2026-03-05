@@ -63,7 +63,7 @@ function Navbar() {
       <Link
         to="/carrito"
         onClick={() => setOpen(false)}
-        className="hover:text-orange-400 transition flex items-center gap-2 justify-center md:justify-start w-full md:w-auto"
+        className="hover:text-orange-400 transition flex items-center gap-2 justify-center md:justify-start"
       >
         Carrito
         {cartCount > 0 && (
@@ -129,7 +129,7 @@ function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden overflow-hidden border-t border-white/10"
           >
-            <div className="flex flex-col gap-1 px-4 py-4 text-gray-200 bg-black/30 [&>*]:block [&>*]:py-3 [&>*]:text-base [&>*]:border-b [&>*]:border-white/10 [&>*:last-child]:border-0">
+            <div className="flex flex-col gap-1 px-4 py-4 text-gray-200 bg-black/30 [&>*]:block [&>*]:py-3 [&>*]:text-base [&>*]:text-center [&>*]:justify-center [&>*]:border-b [&>*]:border-white/10 [&>*:last-child]:border-0">
               {links}
             </div>
           </motion.div>
