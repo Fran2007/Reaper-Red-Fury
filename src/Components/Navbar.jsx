@@ -25,13 +25,16 @@ function Navbar() {
 
   const goToSection = (sectionId) => {
     setOpen(false);
+    const hash = `#${sectionId}`;
 
-    if (location.pathname !== "/") {
-      navigate(`/#${sectionId}`);
+    // Always drive section navigation through URL hash so it works
+    // consistently from any route and on mobile browsers.
+    if (location.pathname === "/" && location.hash === hash) {
+      scrollToSectionWhenReady(sectionId);
       return;
     }
 
-    scrollToSectionWhenReady(sectionId);
+    navigate({ pathname: "/", hash });
   };
 
   const links = (
@@ -60,7 +63,7 @@ function Navbar() {
       <Link
         to="/carrito"
         onClick={() => setOpen(false)}
-        className="hover:text-orange-400 transition flex items-center gap-2"
+        className="hover:text-orange-400 transition flex items-center gap-2 justify-center md:justify-start w-full md:w-auto"
       >
         Carrito
         {cartCount > 0 && (
